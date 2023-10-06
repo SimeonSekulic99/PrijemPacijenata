@@ -16,6 +16,37 @@ namespace PrijemPacijenata.Controllers
             this.context = context;
         }
 
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("PrikaziPacijentaSaId-/{id}")]
+        public async Task<ActionResult<Pacijent>> PrikaziPacijenta(int id)
+        {
+            var pacijent = await context.Pacijenti
+                .Include(p => p.Doktor)
+                .Include(p => p.Dijagnoze)
+                .FirstOrDefaultAsync(p => p.IDPacijenta == id);
+
+            if (pacijent == null)
+            {
+                return NotFound("Pacijent nije pronadjen");
+            }
+
+            var result = new
+            {
+                pacijent.IDPacijenta,
+                pacijent.Ime,
+                pacijent.Prezime,
+                pacijent.BrojSobe,
+                Doktor = new
+                {
+                    pacijent.Doktor.ImeDoktora,
+                    pacijent.Doktor.PrezimeDoktora
+                },
+                Dijagnoze = pacijent.Dijagnoze.Select(dp => dp.ImeDijagnoze).ToList()
+            };
+            return Ok(result);
+        }
+
         [Authorize(Roles ="Admin")]
         [HttpGet("PrikaziSvePacijente")]
         public async Task<ActionResult<List<Pacijent>>> PrikaziSvePacijente()
@@ -46,6 +77,11 @@ namespace PrijemPacijenata.Controllers
         [HttpPost("DodajPacijenta")]
         public IActionResult CreatePatient([FromBody] Pacijent model)
         {
+            if (model == null || string.IsNullOrEmpty(model.Ime) || string.IsNullOrEmpty(model.Prezime) || model.DoktorId <= 0 || model.BrojSobe <= 0)
+            {
+                return BadRequest("Nisu pruženi svi obavezni podaci: Ime, Prezime, DoktorId, BrojSobe.");
+            }
+
             if (ModelState.IsValid)
             {
                 var existingDoctor = context.Doktori.Include(d => d.Pacijenti).FirstOrDefault(d => d.IDDoktora == model.DoktorId);
@@ -110,7 +146,18 @@ namespace PrijemPacijenata.Controllers
         [HttpPost("PretraziPacijente")]
         public async Task<ActionResult<List<Pacijent>>> SearchPatients([FromBody] PacijentSearchParameters searchParameters)
         {
-            // Upit za filtriranje pacijenata po trazenim kriteriumima
+            // Proverava da li ima parametara za pretragu
+            if (searchParameters == null ||
+                (string.IsNullOrEmpty(searchParameters.Ime) &&
+                 string.IsNullOrEmpty(searchParameters.Prezime) &&
+                 !searchParameters.BrojSobe.HasValue &&
+                 !searchParameters.DoktorId.HasValue &&
+                 string.IsNullOrEmpty(searchParameters.DiagnozaIme)))
+            {
+                return BadRequest("Niste uneli ni jedan parametar za pretragu");
+            }
+
+           
             var query = context.Pacijenti
                 .Include(p => p.Doktor)
                 .Include(p => p.Dijagnoze)
@@ -164,21 +211,18 @@ namespace PrijemPacijenata.Controllers
         [HttpDelete("ObrisiPacijenta/{id}")]
         public IActionResult DeletePatient(int id)
         {
-            var patient = context.Pacijenti.Find(id);
+            var patcijent = context.Pacijenti.Find(id);
 
-            if (patient == null)
+            if (patcijent == null)
             {
                 return NotFound("Pacijent nije pronadjen");
             }
 
-            context.Pacijenti.Remove(patient);
+            context.Pacijenti.Remove(patcijent);
             context.SaveChanges();
 
             return Ok("Pacijent uspesno obrisan");
         }
-
-
-
 
         /////////////AZURIRANJE PACIJENTA//////////////
         [Authorize(Roles = "Admin")]
@@ -310,10 +354,13 @@ namespace PrijemPacijenata.Controllers
                 return NotFound("Pacijent nije pronadjen");
             }
 
-            // Ako pacijent ima dijagnozu COVID nemoze da bude prebacen u drugu sobu
-            if (patient.Dijagnoze.Any(d => d.ImeDijagnoze.Equals("COVID", StringComparison.OrdinalIgnoreCase)))
+            // Check if the patient has a COVID diagnosis
+            var hasCovidDiagnosis = patient.Dijagnoze.Any(d => d.ImeDijagnoze.Equals("COVID", StringComparison.OrdinalIgnoreCase));
+
+            // Check if the new room number is 123 and the patient does not have COVID
+            if (newRoomNumber == 123 && !hasCovidDiagnosis)
             {
-                return BadRequest("Pacijent ima dijagnozu COVID. Promena broja sobe nije dozvoljena.");
+                return BadRequest("Pacijent nema dijagnozu COVID. Promena broja sobe na 123 nije dozvoljena.");
             }
 
             patient.BrojSobe = newRoomNumber;
@@ -321,6 +368,7 @@ namespace PrijemPacijenata.Controllers
 
             return Ok($"Broj sobe pacijenta uspesno promenjen na {newRoomNumber}");
         }
+
 
         ///////////////////////////////////////////////
     }

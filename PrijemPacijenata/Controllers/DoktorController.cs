@@ -40,7 +40,7 @@ namespace PrijemPacijenata.Controllers
                 context.Doktori.Add(newDoctor);
                 context.SaveChanges();
 
-                return Ok("Doctor added successfully.");
+                return Ok("Doktor je dodat");
             }
             else
             {

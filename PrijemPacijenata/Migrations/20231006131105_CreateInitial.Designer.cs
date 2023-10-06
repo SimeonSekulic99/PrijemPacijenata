@@ -12,7 +12,7 @@ using PrijemPacijenata.Data;
 namespace PrijemPacijenata.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231005224441_CreateInitial")]
+    [Migration("20231006131105_CreateInitial")]
     partial class CreateInitial
     {
         /// <inheritdoc />
