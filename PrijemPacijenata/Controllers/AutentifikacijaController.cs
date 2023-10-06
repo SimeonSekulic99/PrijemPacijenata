@@ -12,11 +12,11 @@ namespace PrijemPacijenata.Controllers
     public class AutentifikacijaController : ControllerBase
     {
         public static Korisnik korisnik = new Korisnik();
-        private readonly IConfiguration configuration;
+        private readonly IConfiguration configuracija;
 
         public AutentifikacijaController(IConfiguration configuration)
         {
-            this.configuration = configuration;
+            this.configuracija = configuration;
         }
 
         [HttpPost("Registracija")]
@@ -57,7 +57,7 @@ namespace PrijemPacijenata.Controllers
                 new Claim(ClaimTypes.Name, korisnik.KorisnickoIme),
                 new Claim(ClaimTypes.Role, "Admin")
             };
-            var kljuc = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Token").Value));
+            var kljuc = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuracija.GetSection("AppSettings:Token").Value));
 
             var akredit=new SigningCredentials(kljuc, SecurityAlgorithms.HmacSha512Signature);
 
