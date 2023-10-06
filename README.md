@@ -1,8 +1,12 @@
+.NET WEB API pisan u C# 11.0
+
+Koriscen enitty framework ver. 7.0.11 za komunikaciju sa bazom i SSMS(SQL Server Management Studio) za rad sa bazom
+
+Postman koriscen za testiranje i rad sa API-jem (Postman colekcija dostavljena u repozitorijum)
 
 Baza podataka: sastoji se od 4 tabele Pacijenti, Doktori, Dijagnoze, i tabela za linkovanje pacijenata i dijagnnoza DijagnozaPacijent
 
-
-Autentifikacija:
+Autentifikacija preko Microsoft.AspNetCore.Authentication.JwtBearer
 Uradjena je bez koriscenja baze (Nemamo baze za korisnike)
 Tako da se gube podaci o registraciji prilikom ponovnog pokretanja API-a
 
