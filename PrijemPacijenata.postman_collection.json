@@ -1,0 +1,426 @@
+{
+	"info": {
+		"_postman_id": "ba6ab3c1-385d-4158-a299-a7927984fbaf",
+		"name": "PrijemPacijenata",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30225804"
+	},
+	"item": [
+		{
+			"name": "Registracija i Login",
+			"item": [
+				{
+					"name": "Registracija",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"KorisnickoIme\":\"UnesiKorisnickoIme\",\r\n    \"Lozinka\":\"UnesiLozinku\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7016/api/Autentifikacija/Registracija",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7016",
+							"path": [
+								"api",
+								"Autentifikacija",
+								"Registracija"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"KorisnickoIme\":\"UnesiKorisnickoIme\",\r\n    \"Lozinka\":\"UnesiLozinku\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7016/api/Autentifikacija/Login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7016",
+							"path": [
+								"api",
+								"Autentifikacija",
+								"Login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doktor",
+			"item": [
+				{
+					"name": "Prikazi sve doktore",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7016/api/Doktor/PrikaziSveDoktore",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7016",
+							"path": [
+								"api",
+								"Doktor",
+								"PrikaziSveDoktore"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dodavanje Doktora",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2ltZW9uIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2OTY2MTk1MjZ9.ayvA407suQJtDaGowsCr3LUnXbNySr8CaOtIRAswGGpr9gnxkfEU9nfidBEEqDSExxHcrXKAdR9QHE2EHzK1xg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ImeDoktora\": \"ImeDoktora\",\r\n    \"PrezimeDoktora\": \"PrezimeDoktora\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7016/api/Doktor/DodajDoktora",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7016",
+							"path": [
+								"api",
+								"Doktor",
+								"DodajDoktora"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pacijent",
+			"item": [
+				{
+					"name": "Azuriranje Pacijenta",
+					"item": [
+						{
+							"name": "Brisanje Dijagnoze",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2ltZW9uIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2OTY2MjQxNTR9.NKzaTW_2F6DvbdTEJWI8Nh0lsWVn2R5S_wVmwqB6g85YAt-e2qSY9ebm5IgTTsfuOrp61W_r6Yl0jS3OOZ6NUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7016/api/PrijemPacijenata/ObrisiDijagnozuPacijenta/1/COVID",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7016",
+									"path": [
+										"api",
+										"PrijemPacijenata",
+										"ObrisiDijagnozuPacijenta",
+										"1",
+										"COVID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2ltZW9uIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2OTY2MjQxNTR9.NKzaTW_2F6DvbdTEJWI8Nh0lsWVn2R5S_wVmwqB6g85YAt-e2qSY9ebm5IgTTsfuOrp61W_r6Yl0jS3OOZ6NUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7016/api/PrijemPacijenata/DodajDijagnozuPacijentu/3/COVID",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7016",
+									"path": [
+										"api",
+										"PrijemPacijenata",
+										"DodajDijagnozuPacijentu",
+										"3",
+										"COVID"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Promeni Doktora Pacijenta",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2ltZW9uIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2OTY2MjQxNTR9.NKzaTW_2F6DvbdTEJWI8Nh0lsWVn2R5S_wVmwqB6g85YAt-e2qSY9ebm5IgTTsfuOrp61W_r6Yl0jS3OOZ6NUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7016/api/PrijemPacijenata/PromeniDoktoraPacijenta/3/2",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7016",
+									"path": [
+										"api",
+										"PrijemPacijenata",
+										"PromeniDoktoraPacijenta",
+										"3",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Promena Sobe Pacijenta",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2ltZW9uIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2OTY2MjQxNTR9.NKzaTW_2F6DvbdTEJWI8Nh0lsWVn2R5S_wVmwqB6g85YAt-e2qSY9ebm5IgTTsfuOrp61W_r6Yl0jS3OOZ6NUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:7016/api/PrijemPacijenata/PromeniBrojSobePacijenta/3/432",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7016",
+									"path": [
+										"api",
+										"PrijemPacijenata",
+										"PromeniBrojSobePacijenta",
+										"3",
+										"432"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "SviPacijenti",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2ltZW9uIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2OTY2MjQxNTR9.NKzaTW_2F6DvbdTEJWI8Nh0lsWVn2R5S_wVmwqB6g85YAt-e2qSY9ebm5IgTTsfuOrp61W_r6Yl0jS3OOZ6NUw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7016/api/PrijemPacijenata/PrikaziSvePacijente",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7016",
+							"path": [
+								"api",
+								"PrijemPacijenata",
+								"PrikaziSvePacijente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DodavanjePacijenta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2ltZW9uIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2OTY2MjQxNTR9.NKzaTW_2F6DvbdTEJWI8Nh0lsWVn2R5S_wVmwqB6g85YAt-e2qSY9ebm5IgTTsfuOrp61W_r6Yl0jS3OOZ6NUw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Ime\": \"ImePacijenta\",\r\n    \"Prezime\": \"PrezimePacijenta\",\r\n    \"BrojSobe\": 100,//broj sobe\r\n    \"DoktorId\": 1,//id Doktora\r\n    \"Dijagnoze\": [\r\n        {\r\n            \"ImeDijagnoze\": \"ImeDijagnoze1\"\r\n        },\r\n        {\r\n            \"ImeDijagnoze\": \"ImeDijagnoze2\"\r\n        }\r\n        //{ \"ImeDijagnoze\": \"ImeDijagnoze\" } moze se dodavati bilo koj broj dijagnoza\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7016/api/PrijemPacijenata/DodajPacijenta",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7016",
+							"path": [
+								"api",
+								"PrijemPacijenata",
+								"DodajPacijenta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pretraga Pacijenta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2ltZW9uIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2OTY2MjQxNTR9.NKzaTW_2F6DvbdTEJWI8Nh0lsWVn2R5S_wVmwqB6g85YAt-e2qSY9ebm5IgTTsfuOrp61W_r6Yl0jS3OOZ6NUw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ //Pretraga moze da se vrsi bilo kojom kombinacijom ovih parametara\r\n    \"Ime\": \"ImePacijenta\", \r\n    \"Prezime\": \"PrezimePacijenta\",\r\n    \"BrojSobe\": 101,\r\n    \"DoktorId\": 2,\r\n    \"DiagnozaIme\": \"ImeDijagnoze\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7016/api/PrijemPacijenata/PretraziPacijente",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7016",
+							"path": [
+								"api",
+								"PrijemPacijenata",
+								"PretraziPacijente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Brisanje Pacijenta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2ltZW9uIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2OTY2MjQxNTR9.NKzaTW_2F6DvbdTEJWI8Nh0lsWVn2R5S_wVmwqB6g85YAt-e2qSY9ebm5IgTTsfuOrp61W_r6Yl0jS3OOZ6NUw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7016/api/PrijemPacijenata/ObrisiPacijenta/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7016",
+							"path": [
+								"api",
+								"PrijemPacijenata",
+								"ObrisiPacijenta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
