@@ -47,6 +47,7 @@ https://localhost:7016/api/PrijemPacijenata/PrikaziSvePacijente
 • Dodavanje pacijenata [HttpPost("DodajPacijenta")]
 - U postman-u ->
 https://localhost:7016/api/PrijemPacijenata/DodajPacijenta
+
 salje se raw JSON:
 {
     "Ime": "ImePacijenta",
